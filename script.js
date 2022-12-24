@@ -12,6 +12,11 @@ let buttonCopy = document.getElementById("copy")
 
 let num;
 
+let local = localStorage.getItem("passCopy")
+if (local != null) {
+    inpText.value = local
+}
+
 inpCheck.onchange = () => {
     if (inpCheck.checked) {
         inpText.type = "text"
@@ -53,5 +58,7 @@ buttonCopy.onclick = () => {
     if (inpText.value != "") {
         inpText.select()
         navigator.clipboard.writeText(inpText.value);
+        let passCopy = inpText.value
+        localStorage.setItem("passCopy", passCopy)
     }
 }
